@@ -14,14 +14,16 @@
       <div id="map" style="height: 800px"></div>
       <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
       <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+      <script src="leaflet-hash.js"></script>
 
       <script>
         //make a map using osm tiles
-        var map = L.map('map').setView([16.73, -169.52], 14);
+        var map = L.map('map').setView([37.7489, -119.6153], 14);
         L.tileLayer('http://b.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,
           attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributers'
         }).addTo(map);
+        var hash = new L.Hash(map);
       </script>
 
 Radius: <input id="radius" type="range" min="0" max="1000" value="0" step="1" onchange="document.getElementById('radius_text').value=this.value;" />
