@@ -25,17 +25,25 @@
       </script>
 
 Radius: <input id="radius" type="range" min="0" max="1000" value="0" step="1" onchange="document.getElementById('radius_text').value=this.value;" />
-<input type="text" id="radius_text" value="0" maxlength="4" size="4" /></br>
+<input type="text" id="radius_text" value="0" maxlength="4" size="4" />
+<br>
 Reachibility: <input id="reach" type="range" min="0" max="1000" value="0" step="1" onchange="document.getElementById('reach_text').value=this.value;" />
-<input type="text" id="reach_text" value="0" maxlength="4" size="4" /></br>
+<input type="text" id="reach_text" value="0" maxlength="4" size="4" />
+<br>
 Heading: <input id="heading" type="range" min="-1" max="359" value="-1" step="1" onchange="document.getElementById('heading_text').value=this.value;" />
-<input type="text" id="heading_text" value="-1" maxlength="4" size="4" /></br>
+<input type="text" id="heading_text" value="-1" maxlength="4" size="4" />
+<br>
 Costing: <select id="costing">
   <option selected>none</option>
   <option>auto</option>
   <option>pedestrian</option>
   <option>bicycle</option>
-</select></br>
+</select>
+<br>
+Server: <select id="server">
+  <option selected>https://routing.gaiagps.com</option>
+  <option>http://localhost:8002</option>
+</select>
 
     </div>
     <div id="sidebar" style="float:right; width:25%">
@@ -80,7 +88,7 @@ Costing: <select id="costing">
     var input;
     function build_url(ll) {
       //build url
-      var url = 'http://localhost:8002/locate?json=';
+      var url = document.getElementById('server').value + '/locate?json=';
       var json = {
         locations: [{
           lat: ll.lat,
@@ -162,7 +170,7 @@ Costing: <select id="costing">
       features.forEach(function (feature) {
         coords.push(feature.geometry.coordinates);
       });
-      map.fitBounds(L.GeoJSON.coordsToLatLngs(coords), { maxZoom: 19 });
+      map.fitBounds(L.GeoJSON.coordsToLatLngs(coords), { maxZoom: 17 });
     }
 
     //map click callback
